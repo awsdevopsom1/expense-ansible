@@ -18,6 +18,7 @@
         name: /app
         state: absent
     - name: create the app dirctory
+      ansible.builtin.file:
         name: /app
         state: directory
     - name: download and extract the content
