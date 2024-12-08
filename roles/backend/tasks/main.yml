@@ -26,18 +26,18 @@
         src: https://expense-artifacts.s3.amazonaws.com/backend.zip
         dest: /app
         remote_src: yes
-   - name: download the nodejs dependencies
-     ansible.builtin.shell: npm install     
-     args:
-       chdir: /app
-   - name: install the nodejs
-     ansible.builtin.dnf:
+    - name: download the nodejs dependencies
+      ansible.builtin.command:
+        cmd: npm install
+        chdir: /app
+    - name: install the nodejs
+      ansible.builtin.dnf:
         name: mysql -y 
         state: present   
-   - name: load the schema
-     ansible.builtin.shell: mysql -h mysql-dev.awsdevopsom.online -uroot -p{{MYSQL_ROOT_PASSWORD}} < /app/schema/backend.sql         
-   - name: systemd services
-     ansible.builtin.systemd:
+    - name: load the schema
+      ansible.builtin.shell: mysql -h mysql-dev.awsdevopsom.online -uroot -p{{MYSQL_ROOT_PASSWORD}} < /app/schema/backend.sql         
+    - name: systemd services
+      ansible.builtin.systemd:
        name: backend
        state: restarted
        enable: yes  
