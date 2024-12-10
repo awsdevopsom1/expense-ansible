@@ -32,7 +32,7 @@
         chdir: /app
     - name: install the nodejs
       ansible.builtin.dnf:
-        name: mysql -y 
+        name: mysql 
         state: present   
     - name: load the schema
       ansible.builtin.shell: mysql -h mysql-dev.awsdevopsom.online -uroot -p{{MYSQL_ROOT_PASSWORD}} < /app/schema/backend.sql         
