@@ -1,4 +1,4 @@
-    - name: disable nodejs
+    - name: disable mysql
       ansible.builtin.shell: dnf module disable mysql -y 
     - name: install mysql
       ansible.builtin.dnf:
@@ -15,7 +15,7 @@
       ansible.builtin.systemd:
        name: mysqld
        state: restarted
-       enable: yes  
+       enabled: yes  
 
        
          
