@@ -13,19 +13,16 @@
     - name: add the expense user
       ansible.builtin.user:
         name: expense
-    - name: delete the old app
-      ansible.builtin.file:
-        name: /app
-        state: absent
-    - name: create the app dirctory
-      ansible.builtin.file:
-        name: /app
-        state: directory
+
     - name: download and extract the content
-      ansible.builtin.unarchive:
-        src: https://expense-artifacts.s3.amazonaws.com/backend.zip
-        dest: /app
-        remote_src: yes
+      ansible.builtin.import_role:
+        name: common
+        task_from: app_prereq
+      vars:
+        app_dir: /app 
+        component: backend
+         
+       
     - name: download the nodejs dependencies
       ansible.builtin.command:
         cmd: npm install
@@ -40,7 +37,7 @@
       ansible.builtin.systemd:
        name: backend
        state: restarted
-       enabled: yes  
+       enable: yes  
        daemon-reload: yes                 
 
         
