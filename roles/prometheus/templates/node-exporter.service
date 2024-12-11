@@ -1,0 +1,8 @@
+[Unit]
+Description=node-exporter service file
+
+[Service]
+ExecStart=/opt/node_exporter-1.8.2.linux-amd64/node_exporter
+
+[Install]
+WantedBy=multi-user.target
