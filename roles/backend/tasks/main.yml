@@ -41,6 +41,8 @@
        daemon-reload: yes              
     - name: import role node-exporter
       ansible.builtin.import_role:
-        name: prometheus      
+        name: prometheus   
+        tasks_from: node-exporter
+           
 
         
