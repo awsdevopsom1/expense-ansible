@@ -5,9 +5,6 @@ route:
   repeat_interval: 1h
   receiver: 'email'
 receivers:
-  - name: SNS
-# alertmanager.yml:
-receivers:
   - name: "email"
     email_configs:
       - to: omejjigiri99@gmail.com      # you@example.com
