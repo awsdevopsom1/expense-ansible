@@ -5,7 +5,7 @@ route:
   repeat_interval: 1h
   receiver: 'SNS'
 receivers:
-  - name: sns
+  - name: SNS
     sns_configs:
       - sigv4:
           region: us-east-1            # AWS region for signing requests
