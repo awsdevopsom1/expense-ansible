@@ -8,12 +8,12 @@ receivers:
   - name: 'web.hook'
     webhook_configs:
       - url: 'http://127.0.0.1:5001/'
-  - name: name_of_receiver
+ - name: 'name_of_receiver'
     sns_configs:
       - sigv4:
-        region: us-east-1
-      topic_arn: arn:aws:sns:us-east-1:831926604528:alertmanager
-      subject: somesubject
+          region: us-east-1            # AWS region for signing requests
+        topic_arn: arn:aws:sns:us-east-1:831926604528:alertmanager  # SNS Topic ARN
+        subject: 'somesubject'  
 inhibit_rules:
   - source_match:
       severity: 'critical'
