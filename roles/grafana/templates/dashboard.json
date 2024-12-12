@@ -106,9 +106,13 @@
             "expr": "up{name=\"backend-dev\"}",
             "hide": false,
             "instant": false,
+           {% raw %}
             "legendFormat": "{{instance}}",
+           {% endraw %} 
             "range": true,
             "refId": "B"
+            
+
           }
         ],
         "title": "Backend-Monitoring",
