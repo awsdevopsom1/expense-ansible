@@ -3,13 +3,7 @@ route:
   group_wait: 30s
   group_interval: 5m
   repeat_interval: 1h
-  receiver: 'web.hook'
-route:
-  group_by: ['alertname']
-  group_wait: 30s
-  group_interval: 5m
-  repeat_interval: 1h
-  receiver: sns
+  receiver: 'SNS'
 receivers:
   - name: sns
     sns_configs:
