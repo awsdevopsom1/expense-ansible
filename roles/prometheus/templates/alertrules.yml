@@ -1,0 +1,11 @@
+groups:
+- name: example
+  rules:
+  - alert: Instance down alert
+    expr: up < 0
+    for: 1m
+    keep_firing_for: 5m
+    labels:
+      severity: critical
+    annotations:
+      summary: Instance down alert
