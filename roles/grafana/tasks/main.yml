@@ -9,7 +9,6 @@
     state: present
     commit_message: Updated by ansible
     overwrite: true
-
     path: /tmp/dashboard.json
 
 
