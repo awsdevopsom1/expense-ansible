@@ -4,16 +4,19 @@ route:
   group_interval: 5m
   repeat_interval: 1h
   receiver: 'web.hook'
-receivers: 
-  - name: 'web.hook'
-    webhook_configs:
-      - url: 'http://127.0.0.1:5001/'
- - name: 'name_of_receiver'
+route:
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 1h
+  receiver: sns
+receivers:
+  - name: sns
     sns_configs:
       - sigv4:
           region: us-east-1            # AWS region for signing requests
-        topic_arn: arn:aws:sns:us-east-1:831926604528:alertmanager  # SNS Topic ARN
-        subject: 'somesubject'  
+        topic_arn: arn:aws:sns:us-east-1:831926604528:alertmanager
+        subject: 'some_subject'
 inhibit_rules:
   - source_match:
       severity: 'critical'
