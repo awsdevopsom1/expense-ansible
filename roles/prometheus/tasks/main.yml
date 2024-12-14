@@ -4,8 +4,8 @@
     dest: /opt/prometheus/prometheus.yml
 - name: copy the alertrules
   ansible.builtin.template:
-    src: alertrules.yml
-    dest: /opt/prometheus/alertrules.yml
+    src: common.yml
+    dest: /opt/prometheus/alert-rules/common.yml
 - name: reload the prometheus
   ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep | awk '{print $2}')
 - name: copy the alertmanager
