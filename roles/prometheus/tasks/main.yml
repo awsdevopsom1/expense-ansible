@@ -23,7 +23,7 @@
 # - name: reload the alert manager
 #   ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep | awk '{print $2}')
 
-  - name: Download all the objects from the s3 buckets related alert files
+- name: Download all the objects from the s3 buckets related alert files
   amazon.aws.s3_object:
     bucket: prometheus-alert-rules.yml
     mode: list
