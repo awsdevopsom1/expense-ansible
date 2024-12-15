@@ -29,8 +29,8 @@
     mode: list
   register: out
 
-  - name: print
-    debug:
-      msg: "{{out}}"
+- name: print
+  debug:
+    msg: "{{out}}"
 
 
