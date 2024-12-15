@@ -31,5 +31,36 @@ groups:
       env: {{env}}
     annotations:
       summary: Warning | memory usage alert           
+- alert: MNetwork Bandwidth
+    expr: rate(node_ethtool_bw_in_allowance_exceeded[1m]) > 0
+    for: 3m
+    keep_firing_for: 5m
+    labels:
+      severity: critical
+      component: {{ component }}
+      env: {{env}}
+    annotations:
+      summary: critical | Network wait queue is high
+
+  - alert: Memory usage alert
+    expr: ((node_memory_MemFree_bytes + node_memory_Cached_byte + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes) * 100 > 70
+    for: 1m
+    keep_firing_for: 5m
+    labels:
+      severity: critical
+      component: {{ component }}
+      env: {{env}}
+    annotations:
+      summary: Warning | memory usage alert           
+- alert: Nginx service monitor
+    expr: rate(node_ethtool_bw_in_allowance_exceeded[1m]) > 0
+    for: 1m
+    labels:
+      severity: critical
+      component: {{ component }}
+      env: {{env}}
+    annotations:
+      summary: critical | Backend nignx service down       
+                       
       
 ///s
