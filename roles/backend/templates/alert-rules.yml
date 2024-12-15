@@ -1,58 +1,43 @@
 groups:
 - name: {{ component }} - {{env}}
   rules:
-  - alert: CPU Usage alert
+  - alert: CPUUsagealert
     expr: avg by (instance) (100 - (rate(node_cpu_seconds_total{mode="idle"}[5m]) * 100)) > 70
     for: 1m
-    keep_firing_for: 5m
     labels:
       severity: warning
       component: {{ component }}
       env: {{env}}
     annotations:
       summary: critical | CPU usage alert
-  - alert: CPU Usage alert
+  - alert: CPUUsagealert
     expr: avg by (instance) (100 - (rate(node_cpu_seconds_total{mode="idle"}[5m]) * 100)) > 90
     for: 1m
-    keep_firing_for: 5m
     labels:
       severity: critical
       component: {{ component }}
       env: {{env}}
     annotations:
-      summary: Warning | Memory alert      
-  - alert: Memory usage alert
+      summary: Warning | CPU alert      
+  - alert: MemoryUsageAlert
     expr: ((node_memory_MemFree_bytes + node_memory_Cached_byte + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes) * 100 > 70
     for: 1m
-    keep_firing_for: 5m
     labels:
       severity: critical
       component: {{ component }}
       env: {{env}}
     annotations:
       summary: Warning | memory usage alert           
-  - alert: MNetwork Bandwidth
+  - alert: NetworkBandwidth
     expr: rate(node_ethtool_bw_in_allowance_exceeded[1m]) > 0
     for: 3m
-    keep_firing_for: 5m
     labels:
       severity: critical
       component: {{ component }}
       env: {{env}}
     annotations:
-      summary: critical | Network wait queue is high
-
-  - alert: Memory usage alert
-    expr: ((node_memory_MemFree_bytes + node_memory_Cached_byte + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes) * 100 > 70
-    for: 1m
-    keep_firing_for: 5m
-    labels:
-      severity: critical
-      component: {{ component }}
-      env: {{env}}
-    annotations:
-      summary: Warning | memory usage alert           
-  - alert: Nginx service monitor
+      summary: critical | Network wait queue is high           
+  - alert: NginxServiceMonitor
     expr: rate(node_ethtool_bw_in_allowance_exceeded[1m]) > 0
     for: 1m
     labels:
@@ -63,4 +48,3 @@ groups:
       summary: critical | Backend nignx service down       
                        
       
-///s
