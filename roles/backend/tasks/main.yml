@@ -58,6 +58,10 @@
         src: /tmp/{{component}}-{{env}}.yml
         mode: put
 
+    - name: Trigger the prometheus reload job
+      ansible.builtin.shell: curl -u {{ lookup('amazon.aws.aws_ssm', 'jenkins.user', region='us-east-1' ) }}:{{ lookup('amazon.aws.aws_ssm', 'jenkins.password', region='us-east-1' ) }} "http://172.31.45.130:8080/job/prometheus/build?token=prometheus"
+
+
 
 
 
