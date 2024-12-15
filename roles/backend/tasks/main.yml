@@ -56,6 +56,7 @@
         bucket: prometheus-alert-rules.yml 
         object: "{{component}}-{{env}}.yml"
         src: /tmp/{{component}}-{{env}}.yml
+        mode: put
 
 
 
