@@ -30,6 +30,6 @@ groups:
       component: {{ component }}
       env: {{env}}
     annotations:
-      summary: Warning | CPU usage alert            
+      summary: Warning | memory usage alert           
       
 ///s
