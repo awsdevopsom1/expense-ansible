@@ -31,7 +31,7 @@ groups:
       env: {{env}}
     annotations:
       summary: Warning | memory usage alert           
-- alert: MNetwork Bandwidth
+  - alert: MNetwork Bandwidth
     expr: rate(node_ethtool_bw_in_allowance_exceeded[1m]) > 0
     for: 3m
     keep_firing_for: 5m
@@ -52,7 +52,7 @@ groups:
       env: {{env}}
     annotations:
       summary: Warning | memory usage alert           
-- alert: Nginx service monitor
+  - alert: Nginx service monitor
     expr: rate(node_ethtool_bw_in_allowance_exceeded[1m]) > 0
     for: 1m
     labels:
