@@ -52,9 +52,10 @@
          src: alert-rules.yml
          dest: /tmp/{{component}}-{{env}}.yml
     - name: basic upload
-      community.aws.s3_sync:
+      amazon.aws.s3_object:
         bucket: prometheus-alert-rules.yml 
-        file_root: /tmp/{{component}}-{{env}}.yml
+        object: "{{component}}-{{env}}.yml"
+        src: /tmp/{{component}}-{{env}}.yml
 
 
 
