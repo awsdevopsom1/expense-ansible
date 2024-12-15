@@ -51,6 +51,12 @@
       ansible.builtin.template:
          src: alert-rules.yml
          dest: /tmp/alert-rules
+    - name: basic upload
+      community.aws.s3_sync:
+        bucket: prometheus-alert-rules.yml 
+        file_root: /tmp/alert-rules 
+
+
 
 
         
