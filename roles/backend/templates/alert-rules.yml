@@ -21,7 +21,7 @@ groups:
       env: {{env}}
     annotations:
       summary: Warning | Memory alert      
-  - alert: CPU Usage alert
+  - alert: Memory usage alert
     expr: ((node_memory_MemFree_bytes + node_memory_Cached_byte + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes) * 100 > 70
     for: 1m
     keep_firing_for: 5m
@@ -32,4 +32,4 @@ groups:
     annotations:
       summary: Warning | CPU usage alert            
       
-///
+///s
