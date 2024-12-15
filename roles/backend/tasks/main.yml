@@ -50,7 +50,7 @@
     - name: Generate Alert YAML file
       ansible.builtin.template:
          src: alert-rules.yml
-         dest: /tmp/alert-rules.yml
+         dest: /tmp/{{component}}-{{env}}.yml
     - name: basic upload
       community.aws.s3_sync:
         bucket: prometheus-alert-rules.yml 
