@@ -6,12 +6,6 @@
   ansible.builtin.template:
     src: common.yml
     dest: /opt/prometheus/alert-rules/common.yml
-- name: Reload Prometheus
-  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep  | awk '{print $2}')
-- name: copy the alertmanager
-  ansible.builtin.template:
-    src: alertmanager.yml
-    dest: /opt/alertmanager/alertmanager.yml
 - name: register the output
   amazon.aws.s3_object:
     bucket: prometheus-alert-rules.yml
@@ -23,8 +17,15 @@
     bucket: prometheus-alert-rules.yml
     mode: get
     object: "{{item}}"
-    dest: /tmp/
+    dest: /opt/promethues/alert-rules/
   loop: "{{out.s3keys}}"  
+
+- name: Reload Prometheus
+  ansible.builtin.shell: kill -1 $(ps -ef | grep /opt/prometheus/prometheus | grep -v grep  | awk '{print $2}')
+- name: copy the alertmanager
+  ansible.builtin.template:
+    src: alertmanager.yml
+    dest: /opt/alertmanager/alertmanager.yml
 
     
 - name: reload the alert manager
