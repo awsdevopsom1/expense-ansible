@@ -10,7 +10,7 @@ groups:
       component: {{ component }}
       env: {{env}}
     annotations:
-      summary: Warning | CPU usage alert
+      summary: critical | CPU usage alert
   - alert: CPU Usage alert
     expr: avg by (instance) (100 - (rate(node_cpu_seconds_total{mode="idle"}[5m]) * 100)) > 90
     for: 1m
@@ -20,7 +20,7 @@ groups:
       component: {{ component }}
       env: {{env}}
     annotations:
-      summary: Warning | CPU usage alert      
+      summary: Warning | Memory alert      
   - alert: CPU Usage alert
     expr: ((node_memory_MemFree_bytes + node_memory_Cached_byte + node_memory_Buffers_bytes) / node_memory_MemTotal_bytes) * 100 > 70
     for: 1m
